@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SwordHandler</name>
+    </assembly>
+    <members>
+        <member name="T:uk.ac.soton.ses.SwordListAuthor">
+            <summary>
+            SWORD author
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListAuthor.#ctor(System.String)">
+            <summary>
+            Author
+            </summary>
+            <param name="name">Author's name</param>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListAuthor.Name">
+            <summary>
+            Gets or sets the author's name
+            </summary>
+        </member>
+        <member name="T:uk.ac.soton.ses.SwordListEntry">
+            <summary>
+            SWORD entry for the collection list
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListEntry.AddAuthor(System.String)">
+            <summary>
+            Adds the author <code>name</code> to the entry
+            </summary>
+            <param name="name">Author name</param>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListEntry.#ctor(System.String)">
+            <summary>
+            Creates a new entry for the collection with the supplied title
+            </summary>
+            <param name="title">Entry title</param>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Title">
+            <summary>
+            Title of the entry
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Href">
+            <summary>
+            Href to the entry
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Summary">
+            <summary>
+            Summary of the entry
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Updated">
+            <summary>
+            Update time of the entry
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Id">
+            <summary>
+            ID of the entry
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListEntry.Authors">
+            <summary>
+            List of authors for the entry
+            </summary>
+        </member>
+        <member name="T:uk.ac.soton.ses.SwordListReader">
+            <summary>
+            SWORD list reader
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListReader.#ctor(System.Xml.XmlDocument)">
+            <summary>
+            Creates a new SwordListReader from the supplied listing document
+            </summary>
+            <param name="swordListXml">XML document containing list of entries</param>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListReader.GetEntryById(System.String)">
+            <summary>
+            Returns the entry that matches the supplied ID
+            </summary>
+            <param name="id">ID to match</param>
+            <returns>Matching entry, else null</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordListReader.ParseEntries">
+            <summary>
+            Parses the entries in the supplied document and populates the list
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordListReader.Entries">
+            <summary>
+            List of entries in the collection
+            </summary>
+        </member>
+        <member name="T:uk.ac.soton.ses.UploadProgress">
+            <summary>
+            SWORD 2 client implementation for .NET
+            
+            Library functions for communicating with a SWORD 2 compliant server    
+            </summary>
+            
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler.BUFFER_SIZE">
+            <summary>
+            Buffer size for uploads in bytes
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler.EP2_PACKAGING">
+            <summary>
+            EP2 packaging header value
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler.DOCX_CONTENTTYPE">
+            <summary>
+            .docx content type
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler.LIST_RECORD_PATH">
+            <summary>
+            The path for listing records
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler.EXTRACT_MEDIA">
+            <summary>
+            Should media be extracted by default, or ignored?
+            Note that this is going into a header so it should be a string rather
+            than a Boolean
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler._resolveInbox">
+            <summary>
+            TODO: Whether the inbox URL should be resolved from the HTML of the supplied endpoint
+            </summary>
+            TODO
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler._username">
+            <summary>
+            The repository username
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler._password">
+            <summary>
+            The repository password
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordClientHandler._endpoint">
+            <summary>
+            The main repository endpoint
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a new SWORD 2 handler instance
+            </summary>
+            <param name="username">The repository username</param>
+            <param name="password">The repository password</param>
+            <param name="endpoint">The main repository endpoint</param>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.#ctor(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new SWORD 2 handler instance
+            </summary>
+            <param name="username">The repository username</param>
+            <param name="password">The repository password</param>
+            <param name="endpoint">The main repository endpoint</param>
+            <param name="resolveInbox">Whether to attempt to resolve the 'inbox' from the supplied endpoint</param>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.ResolveInbox">
+            <summary>
+            Resolves the inbox based on the currently-supplied endpoint
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.GetBasicAuthAtomWebRequest(System.String)">
+            <summary>
+            Creates a web request instance to the target URI, adding in basic authorisation from the
+            username and password on the instance, and setting the <code>accept</code> header of the request
+            to be <code>application/atom+xml</code>
+            </summary>
+            <param name="targetUri">The URI to which the request should be made</param>
+            <returns>Web request</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.GetBasicAuthAtomWebRequest(System.Uri)">
+            <summary>
+            Creates a web request instance to the target URI, adding in basic authorisation from the
+            username and password on the instance, and setting the <code>accept</code> header of the request
+            to be <code>application/atom+xml</code>
+            </summary>
+            <param name="targetUri">The URI to which the request should be made</param>
+            <returns>Web request</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.WriteFileToRequest(System.String,System.Net.HttpWebRequest)">
+            <summary>
+            Writes the file in <code>filename</code> to the web request <code>wr</code>.
+            This uses a buffer whose size is stored statically in <code>BUFFER_SIZE</code>
+            to speed up the transfer
+            </summary>
+            <param name="filename">The absolute filename to send</param>
+            <param name="wr">The web request on which to send the file</param>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.GetXmlResponse(System.Net.HttpWebRequest)">
+            <summary>
+            Gets an XML document as the response from a web request. The response will be <code>null</code>
+            if it is invalid, either because it is not well-formed XML (e.g. HTML 4.0) or there was
+            no acceptable response available from the server (e.g. 404)
+            </summary>
+            <param name="wr">The web request from which the response should be requested</param>
+            <returns>The XML document response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PostDocxToContainer(System.String)">
+            <summary>
+            Deposits the .docx from the supplied filename to the initialised endpoint with the default content type
+            </summary>
+            <param name="docxFilename">The filename of the .docx to deposit</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PostDocxToContainer(System.String,System.String)">
+            <summary>
+            Deposits the .docx from the supplied filename to the initialised endpoint with the supplied content type
+            </summary>
+            <param name="docxFilename">The filename of the .docx to deposit</param>
+            <param name="contentType">The content type to use for the deposition</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.DepositDocxToContents(System.String,System.String,System.String)">
+            <summary>
+            Deposits the .docx from the supplied filename to the supplied endpoint with the supplied content type
+            </summary>
+            <param name="docxFilename">The filename of the .docx to deposit</param>
+            <param name="contentType">The content type to use for the deposition</param>
+            <param name="contentUri">The endpoint against which the deposition should occur</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PostDocxToRepository(System.String,System.String,System.String)">
+            <summary>
+            Creates a container on the repository and posts the supplied docx file
+            to that container
+            </summary>
+            <param name="docxFilename">The filename of the docx to post</param>
+            <param name="contentType">The content type of the docx</param>
+            <param name="endpoint">The endpoint against which the posting should occur</param>
+            <returns></returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PostDocxToRepository(System.String)">
+            <summary>
+            Creates a container on the repository and posts the supplied docx file
+            to that container, using the default docx content type and the initialised
+            endpoint on the instance
+            </summary>
+            <param name="docxFilename">The filename of the docx to post</param>
+            <returns></returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PostDocxToContainer(System.String,System.String,System.String)">
+            <summary>
+            Posts the supplied docx file to the supplied container 
+            </summary>
+            <param name="docxFilename">The filename of the docx to post</param>
+            <param name="contentType">The content type of the docx</param>
+            <param name="containerUri">The URI of the container</param>
+            <returns></returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.CreateContainer">
+            <summary>
+            Creates an empty container on the initialised repository
+            </summary>
+            <returns>The address of the new empty container</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.CreateContainer(System.String)">
+            <summary>
+            Creates an empty container on the repository at the supplied endpoint
+            </summary>
+            <param name="endpoint">The endpoint at which to create the new empty container</param>
+            <returns>The address of the new empty container</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.GetResponseLocation(System.Net.HttpWebRequest)">
+            <summary>
+            Gets the location of the response from the provided <code>HttpWebRequest</code>
+            </summary>
+            <param name="wr">The web request to query</param>
+            <returns>Location string</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.GetEprintInfo(System.String)">
+            <summary>
+            Gets information about the ePrint at the provided URI
+            </summary>
+            <param name="uri">ePrint URI</param>
+            <returns>Atom XML document</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PutToDocument(System.String,System.String)">
+            <summary>
+            Performs a PUT to the supplied endpoint with the supplied document filename using <code>DOCX_CONTENTTYPE</code>.
+            This will update an existing entry on the SWORD target
+            </summary>
+            <param name="documentFileName">The filename of the document to use for the update</param>
+            <param name="endpoint">The endpoint against which the update should occur</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.PutToDocument(System.String,System.String,System.String)">
+            <summary>
+            Performs a PUT to the supplied endpoint with the supplied document filename using the supplied content type.
+            This will update an existing entry on the SWORD target
+            </summary>
+            <param name="documentFileName">The filename of the document to use for the update</param>
+            <param name="endpoint">The endpoint against which the update should occur</param>
+            <param name="contentType">The content type to use for the update</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.CreateResource(System.String,System.String,System.String)">
+            <summary>
+            Deposits a single binary file in the specified packaging
+            format and content type, without any embedded metadata.
+            </summary>
+            <param name="zipFileName">The binary filename</param>
+            <param name="packaging">The packaging format</param>
+            <param name="contentType">The content type</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.CreateResource(System.String)">
+            <summary>
+            Deposits a simple Atom entry with embedded metadata
+            </summary>
+            <param name="metadata">An XmlDocument containing item metadata</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.DepositXml(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Deposits the XML document to the initialised endpoint with the supplied
+            X-Packaging type
+            </summary>
+            <param name="xmlDocument">The XML document to deposit</param>
+            <param name="xPackaging">The X-Packaging type</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.Delete(System.String)">
+            <summary>
+            Deletes the document at the target address <code>swordUrl</code>.
+            </summary>
+            <param name="swordUrl">The target address at which the document resides</param>
+            <returns>Atom response</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.ListRecords(System.Boolean)">
+            <summary>
+            List all records at the endpoint
+            </summary>
+            <param name="stripEndpoint"><code>true</code> if the endpoint should be stripped down
+            and the default of /id/records (<code>LIST_RECORD_PATH</code>) used, else <code>false</code> 
+            if the literal endpoint, suffixed with /id/records (<code>LIST_RECORD_PATH</code>) 
+            value should be used</param>
+            <returns>List of records in XML format, else <code>null</code></returns>
+            <exception cref="T:System.Net.WebException">Typically thrown at a timeout on the endpoint</exception>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordClientHandler.ListRecords">
+            <summary>
+            List all records at the endpoint, by calling endpoint/id/records (<code>LIST_RECORD_PATH</code>)
+            </summary>
+            <returns>List of records in XML format, else <code>null</code></returns>
+            <exception cref="T:System.Net.WebException">Typically thrown at a timeout on the endpoint</exception>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordClientHandler.Username">
+            <summary>
+            Sets the username associated with the repository
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordClientHandler.Password">
+            <summary>
+            Sets the password associated with the repository
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordClientHandler.Endpoint">
+            <summary>
+            Sets the endpoint associated with the repository
+            </summary>
+        </member>
+        <member name="T:uk.ac.soton.ses.SwordClientHandlerTests">
+            <summary>
+            A series of basic tests for the .NET API
+            </summary>
+        </member>
+        <member name="T:uk.ac.soton.ses.HtmlScraper">
+            <summary>
+            Limited basic HTML parsing routines
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.HtmlScraper.GetMetaContent(System.String,System.String)">
+            <summary>
+            Returns the content metatag value for the supplied parameter name and web address
+            </summary>
+            <param name="address">Web address containing HTML to be parsed</param>
+            <param name="name">Name of the content parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.HtmlScraper.GetMetaContent(System.String,System.String,System.String)">
+            <summary>
+            Returns the value of the named attribute from a metatag if this exists
+            </summary>
+            <param name="address">Web address containing HTML to be parsed</param>
+            <param name="name">Name of the content parameter (e.g. foo if name="foo")</param>
+            <param name="target">Name of the target attribute (e.g. value if value="bar")</param>
+            <returns>Value of the target attribute (e.g. bar if value="bar")</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.HtmlScraper.GetAttributeContent(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Returns the value of the named attribute from the supplied address. For example, given:
+            
+            link rel="foo" href="bar"
+            </summary>
+            <param name="address">Web address containing HTML to be parsed</param>
+            <param name="type">Type of tag, e.g. link</param>
+            <param name="namelabel">Label of the name, e.g. rel</param>
+            <param name="name">Name, e.g. foo</param>
+            <param name="target">Target label, e.g. href</param>
+            <returns>Target value, e.g. bar</returns>
+        </member>
+        <member name="M:uk.ac.soton.ses.HtmlScraper.GetAttributeContent(System.Net.HttpWebRequest,System.String,System.String,System.String,System.String)">
+            <summary>
+            Gathers values from an HTML file's attribute where another named attribute matches another value. For example, given:
+            
+             link rel="foo" href="bar"
+             
+            as HTML content from http://www.example.com, one can retrieve the value 'bar' by calling:
+            
+            GetAttributeContent((HttpWebRequest)HttpWebRequest.Create("http://www.example.com"), "link", "rel", "foo", "href").
+            
+            Note that this method hasn't been exhaustively tested but appears to work fairly well even for relatively broken
+            HTML 4 documents (as well as nice, strict XHTML ones). Additionally, as the whole HTML document is loaded into
+            RAM whilst parsing (in order to ditch and close the request/responses early) a truly massive HTML document
+            *could* cause a <code>OutOfMemoryException</code>.
+            
+            All exceptions are caught, outputted to any debug listener, and rethrown
+            
+            It is not optimised and could contain bugs, so please use with caution!
+            </summary>
+            <param name="request">The HTTP web request from which to gather an HTML response</param>
+            <param name="type">The type of tag (e.g. "meta" or "link")</param>
+            <param name="namelabel">The label of the tag to match</param>
+            <param name="name">The value of the labelled tag to match</param>
+            <param name="target">The label of the target tag</param>
+            <returns>The value of the target tag</returns>
+        </member>
+        <member name="T:uk.ac.soton.ses.SwordAtomReader">
+            <summary>
+            SWORD 2 Atom XML reader
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordAtomReader.atomXml">
+            <summary>
+            The Atom XML document
+            </summary>
+        </member>
+        <member name="F:uk.ac.soton.ses.SwordAtomReader.xnm">
+            <summary>
+            XML namespace manager for Atom XML document
+            </summary>
+        </member>
+        <member name="M:uk.ac.soton.ses.SwordAtomReader.#ctor(System.Xml.XmlDocument)">
+            <summary>
+            Creates a new SWORD Atom reader from the supplied XML document
+            </summary>
+            <param name="atomXml">Atom XML</param>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomXml">
+            <summary>
+            Gets or sets the Atom response on this instance
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.EditMediaHref">
+            <summary>
+            Edit media href
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.EditHref">
+            <summary>
+            Edit href
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.ContentsHref">
+            <summary>
+            Contents href
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomId">
+            <summary>
+            Atom ID
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomTitle">
+            <summary>
+            Atom title
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomGenerator">
+            <summary>
+            Atom generator
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomGeneratorUri">
+            <summary>
+            Atom generator URI
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomGeneratorVersion">
+            <summary>
+            Atom generator version
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomSummary">
+            <summary>
+            Atom summary
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomContentType">
+            <summary>
+            Atom content type
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomContentSrc">
+            <summary>
+            Atom content source
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.SwordTreatment">
+            <summary>
+            SWORD treatment
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.SwordPackaging">
+            <summary>
+            SWORD packaging
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.SwordNoop">
+            <summary>
+            SWORD noop
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomUpdated">
+            <summary>
+            Atom updated
+            </summary>
+        </member>
+        <member name="P:uk.ac.soton.ses.SwordAtomReader.AtomPublished">
+            <summary>
+            Atom published
+            </summary>
+        </member>
+    </members>
+</doc>
