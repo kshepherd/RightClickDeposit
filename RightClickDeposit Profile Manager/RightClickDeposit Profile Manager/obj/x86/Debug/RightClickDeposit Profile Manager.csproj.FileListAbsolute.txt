@@ -1,0 +1,11 @@
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\bin\Debug\librcd.dll
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\bin\Debug\librcd.pdb
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\bin\Debug\rcdpm.exe
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\bin\Debug\rcdpm.pdb
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\rcdpm.exe
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\rcdpm.pdb
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\org.swordapp.client.windows.profiles.frmProfiles.resources
+C:\Users\kim\documents\visual studio 2010\Projects\RightClickDeposit Profile Manager\RightClickDeposit Profile Manager\obj\x86\Debug\org.swordapp.client.windows.profiles.Properties.Resources.resources

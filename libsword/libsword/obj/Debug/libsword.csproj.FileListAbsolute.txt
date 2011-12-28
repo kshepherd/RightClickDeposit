@@ -1,0 +1,5 @@
+C:\Users\kim\documents\visual studio 2010\Projects\libsword\libsword\bin\Debug\libsword.dll
+C:\Users\kim\documents\visual studio 2010\Projects\libsword\libsword\bin\Debug\libsword.pdb
+C:\Users\kim\documents\visual studio 2010\Projects\libsword\libsword\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kim\documents\visual studio 2010\Projects\libsword\libsword\obj\Debug\libsword.dll
+C:\Users\kim\documents\visual studio 2010\Projects\libsword\libsword\obj\Debug\libsword.pdb

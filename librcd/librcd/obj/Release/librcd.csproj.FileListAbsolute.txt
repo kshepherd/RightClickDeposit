@@ -1,0 +1,5 @@
+C:\Users\kim\documents\visual studio 2010\Projects\librcd\librcd\bin\Release\librcd.dll
+C:\Users\kim\documents\visual studio 2010\Projects\librcd\librcd\bin\Release\librcd.pdb
+C:\Users\kim\documents\visual studio 2010\Projects\librcd\librcd\obj\Release\ResolveAssemblyReference.cache
+C:\Users\kim\documents\visual studio 2010\Projects\librcd\librcd\obj\Release\librcd.dll
+C:\Users\kim\documents\visual studio 2010\Projects\librcd\librcd\obj\Release\librcd.pdb
