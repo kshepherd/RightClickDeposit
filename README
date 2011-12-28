@@ -1,4 +1,60 @@
-Right-click Deposit
-=====
+                                 Right-click Deposit
+                                       =====
+				        1.0
+				       =====
+
+  README README README README README README README README README README README
+  ============================================================================
 
 More documentation to come soon. Project is almost finished, I'm just checking this into git now that it's close to completion.
+
+INTRODUCTION
+============
+
+RightClickDeposit is a Windows 7 SWORD client that utilises the familiar 'right-click a file' Explorer context menu to enable quick repository deposits of single files, optionally with some basic metadata.
+
+This client was developed for the SWORD 2 Project (http://www.swordapp.org) with funding from JISC (http://www.jisc.ac.uk).
+
+LICENSE
+=======
+
+To be decided. LGPL v3 or Apache License 2, probably?
+
+SOURCE STRUCTURE
+================
+
+Code is currently supplied as four separate Visual Studio (C#) solutions. There are two Windows forms applications and two shared libraries.
+Visual Studio is not required for compilation or development, but some kind of IDE is recommended.
+
+This will be replaced with a more generic, 'pure' source tree soon.
+
+PROJECTS
+========
+
+RightClickDeposit
+--
+Windows forms application. This is the main application run via the right-click context menu. The selected file, deposit profile, and an action (create, update, or delete) is passed as an argument.
+
+Dependencies: 
+ libsword.dll (very simple SWORD client, basically just WebClient)
+ librcd.dll (shared RightClickDeposit classes)
+ RightClickDeposit Profile Manager (profile manager application, admin-only)
+
+
+RightClickDeposit Profile Manager
+--
+Windows forms application. Very simple profile management utility, with a command to update Explorer context menus. Because this involves adding/changing the registry, this application uses UAC to demand elevation to administrative privileges.
+
+Dependencies:
+ libsword
+ librcd
+
+
+libsword
+--
+Windows DLL. Simple SWORD client and utilities. Extends System.Net.WebClient but doesn't yet override any methods, simply helps with constructing Atom web requests with basic auth and still allows for asyncronous uploads and downloads of data.
+
+
+librcd
+--
+Windows DLL. Shared RightClickDeposit client libraries, used by the main application and the profile manager. At present, largely 'Deposit' and 'Profile' classes and utilities. 
