@@ -5,11 +5,11 @@ C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickD
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\bin\Release\librcd.pdb
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\bin\Release\libsword.pdb
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.frmDeposits.resources
-C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.frmLogin.resources
-C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.frmMain.resources
-C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.Properties.Resources.resources
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\GenerateResource.write.1.tlog
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.exe
 C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\RightClickDeposit.pdb
+C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\org.swordapp.client.windows.frmDeposits.resources
+C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\org.swordapp.client.windows.frmLogin.resources
+C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\org.swordapp.client.windows.frmMain.resources
+C:\Users\kim\Documents\Visual Studio 2010\Projects\RightClickDeposit\RightClickDeposit\obj\x86\Release\org.swordapp.client.windows.Properties.Resources.resources

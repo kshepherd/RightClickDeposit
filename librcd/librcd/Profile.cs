@@ -221,7 +221,21 @@ namespace org.swordapp.client.windows.libraries
             }
             catch (FileNotFoundException fe)
             {
-                System.IO.File.WriteAllLines(path, new string[1] { "<Profiles></Profiles>" });
+                System.IO.File.WriteAllLines(path, new string[1] { 
+                    "<Profiles><Profile>" +
+                        "<ID>0</ID>" +
+                        "<Name>Kim's Demonstration Collection</Name>" +
+                        "<ServiceDocumentUri>http://www.anonymous.org.nz:8080/swordv2/servicedocument</ServiceDocumentUri>" +
+                        "<DefaultDepositUri>http://www.anonymous.org.nz:8080/swordv2/collection/123456789/2</DefaultDepositUri>" +
+                        "<Default>True</Default>" +
+                        "<Username>rightclickdeposit@gmail.com</Username>" +
+                        "<Password>rightclickdeposit</Password>" +
+                        "<FinalState>Ask</FinalState>" +
+                        "<MetadataInclusion>Optional</MetadataInclusion>" +
+                        "<Packaging></Packaging>" +
+                        "<OnBehalfOf />" +
+                      "</Profile></Profiles>"
+                });
             }
 
             foreach (XmlNode profileNode in profilesDoc.GetElementsByTagName("Profile"))

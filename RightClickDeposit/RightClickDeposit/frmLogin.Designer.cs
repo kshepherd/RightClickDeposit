@@ -1,4 +1,4 @@
-﻿namespace RightClickDeposit
+﻿namespace org.swordapp.client.windows
 {
     partial class frmLogin
     {

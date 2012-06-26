@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RightClickDeposit
+namespace org.swordapp.client.windows
 {
     public partial class frmLogin : Form
     {

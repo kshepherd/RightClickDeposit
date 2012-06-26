@@ -1,4 +1,4 @@
-﻿namespace RightClickDeposit
+﻿namespace org.swordapp.client.windows
 {
     partial class frmDeposits
     {
@@ -38,6 +38,8 @@
             this.lblUpdate = new System.Windows.Forms.Label();
             this.lblDelete = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnComplete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -90,7 +92,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(19, 278);
+            this.btnDelete.Location = new System.Drawing.Point(19, 305);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 2;
@@ -110,7 +112,7 @@
             // lblDelete
             // 
             this.lblDelete.AutoSize = true;
-            this.lblDelete.Location = new System.Drawing.Point(101, 283);
+            this.lblDelete.Location = new System.Drawing.Point(101, 310);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(196, 13);
             this.lblDelete.TabIndex = 4;
@@ -126,11 +128,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(101, 281);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(196, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Complete a deposit which is \'in progress\'";
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Location = new System.Drawing.Point(19, 276);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(75, 23);
+            this.btnComplete.TabIndex = 6;
+            this.btnComplete.Text = "Complete";
+            this.btnComplete.UseVisualStyleBackColor = true;
+            this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
+            // 
             // frmDeposits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 313);
+            this.ClientSize = new System.Drawing.Size(602, 331);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnComplete);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDelete);
             this.Controls.Add(this.lblUpdate);
@@ -156,5 +179,7 @@
         private System.Windows.Forms.Label lblUpdate;
         private System.Windows.Forms.Label lblDelete;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnComplete;
     }
 }

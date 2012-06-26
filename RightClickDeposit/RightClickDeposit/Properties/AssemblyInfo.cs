@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RightClickDeposit")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple SWORDv2 client for Windows 7")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SWORD")]
 [assembly: AssemblyProduct("RightClickDeposit")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright ©  2011 Kim Shepherd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

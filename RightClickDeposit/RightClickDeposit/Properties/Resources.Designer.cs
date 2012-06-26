@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RightClickDeposit.Properties {
+namespace org.swordapp.client.windows.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RightClickDeposit.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RightClickDeposit.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("org.swordapp.client.windows.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,34 @@ namespace RightClickDeposit.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rcd_add {
+            get {
+                object obj = ResourceManager.GetObject("rcd_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rcd_cmp {
+            get {
+                object obj = ResourceManager.GetObject("rcd_cmp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rcd_del {
+            get {
+                object obj = ResourceManager.GetObject("rcd_del", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rcd_upd {
+            get {
+                object obj = ResourceManager.GetObject("rcd_upd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -1,4 +1,4 @@
-﻿namespace RightClickDeposit
+﻿namespace org.swordapp.client.windows
 {
     partial class frmMain
     {
@@ -83,7 +83,7 @@
             this.btnUpload.Location = new System.Drawing.Point(270, 219);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpload.TabIndex = 7;
+            this.btnUpload.TabIndex = 2;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = true;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
@@ -118,7 +118,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(418, 186);
-            this.tabControl1.TabIndex = 15;
+            this.tabControl1.TabIndex = 4;
             // 
             // tabFile
             // 
@@ -165,7 +165,8 @@
             // 
             // pictureAction
             // 
-            this.pictureAction.Image = global::RightClickDeposit.Properties.Resources.repository_96;
+            this.pictureAction.ErrorImage = global::org.swordapp.client.windows.Properties.Resources.repository_96;
+            this.pictureAction.Image = global::org.swordapp.client.windows.Properties.Resources.repository_96;
             this.pictureAction.Location = new System.Drawing.Point(9, 6);
             this.pictureAction.Name = "pictureAction";
             this.pictureAction.Size = new System.Drawing.Size(44, 43);
@@ -179,7 +180,7 @@
             this.cmbMime.Location = new System.Drawing.Point(110, 135);
             this.cmbMime.Name = "cmbMime";
             this.cmbMime.Size = new System.Drawing.Size(165, 21);
-            this.cmbMime.TabIndex = 11;
+            this.cmbMime.TabIndex = 1;
             // 
             // label5
             // 
@@ -289,7 +290,7 @@
             this.dateTimePicker.Location = new System.Drawing.Point(76, 57);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(231, 20);
-            this.dateTimePicker.TabIndex = 19;
+            this.dateTimePicker.TabIndex = 7;
             // 
             // label2
             // 
@@ -319,7 +320,7 @@
             this.txtDCAbstract.Name = "txtDCAbstract";
             this.txtDCAbstract.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDCAbstract.Size = new System.Drawing.Size(313, 129);
-            this.txtDCAbstract.TabIndex = 15;
+            this.txtDCAbstract.TabIndex = 9;
             // 
             // lblDCAbstract
             // 
@@ -337,7 +338,7 @@
             this.chkDublinCore.Location = new System.Drawing.Point(78, 10);
             this.chkDublinCore.Name = "chkDublinCore";
             this.chkDublinCore.Size = new System.Drawing.Size(166, 17);
-            this.chkDublinCore.TabIndex = 13;
+            this.chkDublinCore.TabIndex = 5;
             this.chkDublinCore.Text = "Include Dublin Core metadata";
             this.chkDublinCore.UseVisualStyleBackColor = true;
             this.chkDublinCore.CheckedChanged += new System.EventHandler(this.chkDublinCore_CheckedChanged_1);
@@ -349,7 +350,7 @@
             this.txtDCCreator.Multiline = true;
             this.txtDCCreator.Name = "txtDCCreator";
             this.txtDCCreator.Size = new System.Drawing.Size(231, 42);
-            this.txtDCCreator.TabIndex = 12;
+            this.txtDCCreator.TabIndex = 8;
             // 
             // lblDCCreator
             // 
@@ -367,7 +368,7 @@
             this.txtDCTitle.Location = new System.Drawing.Point(76, 30);
             this.txtDCTitle.Name = "txtDCTitle";
             this.txtDCTitle.Size = new System.Drawing.Size(231, 20);
-            this.txtDCTitle.TabIndex = 10;
+            this.txtDCTitle.TabIndex = 6;
             // 
             // lblDCTitle
             // 
@@ -384,7 +385,7 @@
             this.btnQuit.Location = new System.Drawing.Point(351, 219);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(75, 23);
-            this.btnQuit.TabIndex = 16;
+            this.btnQuit.TabIndex = 3;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);

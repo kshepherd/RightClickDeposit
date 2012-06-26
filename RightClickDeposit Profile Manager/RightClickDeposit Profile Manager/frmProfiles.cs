@@ -19,11 +19,16 @@ namespace org.swordapp.client.windows.profiles
     {
         Dictionary<int,Profile> profiles;
         Profile currentProfile;
+        ImageList imageList;
+        
 
         public frmProfiles()
         {
             InitializeComponent();
             listProfiles();
+            imageList = new ImageList();
+            imageList.Images.Add(org.swordapp.client.windows.profiles.Properties.Resources.repository);
+            listProfile.LargeImageList = imageList;
             
         }
 
@@ -39,6 +44,9 @@ namespace org.swordapp.client.windows.profiles
                 i.Text = profile.GetName();
                 i.Name = profile.GetName();
                 i.SubItems.Add(profile.GetServiceDocumentUri());
+                i.ImageIndex = 0;
+                
+                
                 listProfile.Items.Add(i);
                 if (profile.IsDefault())
                     currentProfile = profile;
@@ -87,7 +95,7 @@ namespace org.swordapp.client.windows.profiles
             txtServiceDocumentUri.Text = currentProfile.GetServiceDocumentUri();
             txtDefaultDepositUri.Text = currentProfile.GetDepositUri();
             txtUsername.Text = currentProfile.GetUsername();
-            txtPassword.Text = currentProfile.GetPassword();
+            //txtPassword.Text = currentProfile.GetPassword();
             cmbAutoState.Text = currentProfile.GetFinalState();
             cmdMetadata.Text = currentProfile.GetMetadataInclusion();
             txtPackaging.Text = currentProfile.GetPackaging();
@@ -105,7 +113,7 @@ namespace org.swordapp.client.windows.profiles
             currentProfile.SetServiceDocumentUri(txtServiceDocumentUri.Text);
             currentProfile.SetDepositUri(txtDefaultDepositUri.Text);
             currentProfile.SetUsername(txtUsername.Text);
-            currentProfile.SetPassword(txtPassword.Text);
+            //currentProfile.SetPassword(txtPassword.Text);
             currentProfile.SetFinalState(cmbAutoState.Text);
             currentProfile.SetMetadataInclusion(cmdMetadata.Text);
             currentProfile.SetPackaging(txtPackaging.Text);
@@ -134,6 +142,7 @@ namespace org.swordapp.client.windows.profiles
             reg.BaseRegistryKey = bk;
             reg.SubKey = "*\\shell\\RightClickDeposit";
             reg.Write("MUIVerb", "Deposit to");
+            reg.Write("Icon", Application.StartupPath + "\\icons\\rcd.ico");
             string commandList = "";
             foreach(KeyValuePair<int,Profile> p in profiles)
             {
@@ -147,6 +156,7 @@ namespace org.swordapp.client.windows.profiles
                     regcmd.BaseRegistryKey = cbk;
                     regcmd.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\" + commandName;
                     regcmd.Write("MUIVerb", p.Value.GetName());
+                    regcmd.Write("Icon", Application.StartupPath + "\\icons\\add.ico");
                     //MessageBox.Show(regcmd.Read("MUIVerb"));
                     RegistryKey cck = cbk.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\" + commandName + "\\command");
                     regcmd.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\" + commandName + "\\command";
@@ -161,6 +171,7 @@ namespace org.swordapp.client.windows.profiles
             regu.BaseRegistryKey = ubk;
             regu.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.update";
             regu.Write("MUIVerb", "Update or delete previous deposits");
+            regu.Write("Icon", Application.StartupPath + "\\icons\\update.ico");
            
             RegistryKey cuk = ubk.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.update\\command");
             regu.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.update\\command";
@@ -172,6 +183,7 @@ namespace org.swordapp.client.windows.profiles
             regp.BaseRegistryKey = pbk;
             regp.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.profiles";
             regp.Write("MUIVerb", "Manage profiles (admin-only)");
+            regp.Write("Icon", Application.StartupPath + "\\icons\\manage.ico");
 
             RegistryKey puk = pbk.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.profiles\\command");
             regp.SubKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CommandStore\\shell\\RightClickDeposit.profiles\\command";
@@ -182,6 +194,35 @@ namespace org.swordapp.client.windows.profiles
             reg.Write("SubCommands", commandList);
 
             MessageBox.Show("Right-click explorer context menus updated successfully", "Menu update successful");
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            currentProfile = new Profile();
+            int maxId = 0;
+            if (profiles.Count > 0)
+                maxId = profiles.Max(kvp => kvp.Key);
+            int id = maxId + 1;
+            currentProfile.SetId(id);
+            drawProfileForm();
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Profile p = getSelectedProfile();
+
+            if (p != null)
+            {
+                profiles.Remove(p.GetId());
+            }
+
+            Profile.writeProfiles(Program.defaultProfileDataPath, profiles.Values.ToList());
+            listProfiles();
         }
     }
 }

@@ -34,7 +34,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.cmbAutoState = new System.Windows.Forms.ComboBox();
             this.cmdMetadata = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.listProfile = new System.Windows.Forms.ListView();
             this.txtPassword = new System.Windows.Forms.MaskedTextBox();
             this.chkInRightClick = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +56,7 @@
             this.txtPackaging = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtOnBehalfOf = new System.Windows.Forms.TextBox();
+            this.btnQuit = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,28 +65,28 @@
             this.txtServiceDocumentUri.Location = new System.Drawing.Point(135, 207);
             this.txtServiceDocumentUri.Name = "txtServiceDocumentUri";
             this.txtServiceDocumentUri.Size = new System.Drawing.Size(264, 20);
-            this.txtServiceDocumentUri.TabIndex = 0;
+            this.txtServiceDocumentUri.TabIndex = 7;
             // 
             // txtDefaultDepositUri
             // 
             this.txtDefaultDepositUri.Location = new System.Drawing.Point(135, 235);
             this.txtDefaultDepositUri.Name = "txtDefaultDepositUri";
             this.txtDefaultDepositUri.Size = new System.Drawing.Size(264, 20);
-            this.txtDefaultDepositUri.TabIndex = 1;
+            this.txtDefaultDepositUri.TabIndex = 8;
             // 
             // txtProfileName
             // 
             this.txtProfileName.Location = new System.Drawing.Point(135, 181);
             this.txtProfileName.Name = "txtProfileName";
             this.txtProfileName.Size = new System.Drawing.Size(264, 20);
-            this.txtProfileName.TabIndex = 2;
+            this.txtProfileName.TabIndex = 6;
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(73, 289);
+            this.txtUsername.Location = new System.Drawing.Point(87, 289);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(152, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.Size = new System.Drawing.Size(138, 20);
+            this.txtUsername.TabIndex = 10;
             // 
             // cmbAutoState
             // 
@@ -97,7 +98,7 @@
             this.cmbAutoState.Location = new System.Drawing.Point(421, 235);
             this.cmbAutoState.Name = "cmbAutoState";
             this.cmbAutoState.Size = new System.Drawing.Size(121, 21);
-            this.cmbAutoState.TabIndex = 5;
+            this.cmbAutoState.TabIndex = 14;
             // 
             // cmdMetadata
             // 
@@ -109,24 +110,25 @@
             this.cmdMetadata.Location = new System.Drawing.Point(421, 290);
             this.cmdMetadata.Name = "cmdMetadata";
             this.cmdMetadata.Size = new System.Drawing.Size(121, 21);
-            this.cmdMetadata.TabIndex = 6;
+            this.cmdMetadata.TabIndex = 15;
             this.cmdMetadata.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // button1
+            // btnNew
             // 
-            this.button1.Location = new System.Drawing.Point(12, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "New profile";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNew.Location = new System.Drawing.Point(12, 146);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(75, 23);
+            this.btnNew.TabIndex = 2;
+            this.btnNew.Text = "New profile";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(178, 146);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 23);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save profile";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -136,7 +138,7 @@
             this.btnLoad.Location = new System.Drawing.Point(93, 146);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(79, 23);
-            this.btnLoad.TabIndex = 9;
+            this.btnLoad.TabIndex = 3;
             this.btnLoad.Text = "Load profile";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.button3_Click);
@@ -209,17 +211,17 @@
             this.listProfile.Location = new System.Drawing.Point(12, 37);
             this.listProfile.Name = "listProfile";
             this.listProfile.Size = new System.Drawing.Size(543, 103);
-            this.listProfile.TabIndex = 18;
+            this.listProfile.TabIndex = 1;
             this.listProfile.UseCompatibleStateImageBehavior = false;
-            this.listProfile.View = System.Windows.Forms.View.SmallIcon;
             // 
             // txtPassword
             // 
+            this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(299, 290);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtPassword.TabIndex = 19;
+            this.txtPassword.TabIndex = 11;
             // 
             // chkInRightClick
             // 
@@ -228,19 +230,19 @@
             this.chkInRightClick.Location = new System.Drawing.Point(423, 180);
             this.chkInRightClick.Name = "chkInRightClick";
             this.chkInRightClick.Size = new System.Drawing.Size(123, 17);
-            this.chkInRightClick.TabIndex = 20;
+            this.chkInRightClick.TabIndex = 13;
             this.chkInRightClick.Text = "Include in menu?";
             this.chkInRightClick.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnUpdate
             // 
-            this.button4.Location = new System.Drawing.Point(421, 146);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 23);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Update menu";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnUpdate.Location = new System.Drawing.Point(421, 146);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(115, 23);
+            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.Text = "Update menu";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.button4_Click);
             // 
             // menuStrip1
             // 
@@ -271,9 +273,10 @@
             this.btnDelete.Location = new System.Drawing.Point(269, 146);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 23);
-            this.btnDelete.TabIndex = 23;
+            this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete profile";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label7
             // 
@@ -289,12 +292,12 @@
             this.txtPackaging.Location = new System.Drawing.Point(135, 263);
             this.txtPackaging.Name = "txtPackaging";
             this.txtPackaging.Size = new System.Drawing.Size(264, 20);
-            this.txtPackaging.TabIndex = 25;
+            this.txtPackaging.TabIndex = 9;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 319);
+            this.label8.Location = new System.Drawing.Point(13, 322);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 26;
@@ -302,22 +305,33 @@
             // 
             // txtOnBehalfOf
             // 
-            this.txtOnBehalfOf.Location = new System.Drawing.Point(87, 315);
+            this.txtOnBehalfOf.Location = new System.Drawing.Point(87, 318);
             this.txtOnBehalfOf.Name = "txtOnBehalfOf";
             this.txtOnBehalfOf.Size = new System.Drawing.Size(138, 20);
-            this.txtOnBehalfOf.TabIndex = 27;
+            this.txtOnBehalfOf.TabIndex = 12;
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Location = new System.Drawing.Point(480, 322);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(75, 23);
+            this.btnQuit.TabIndex = 27;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = true;
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // frmProfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 341);
+            this.ClientSize = new System.Drawing.Size(567, 350);
+            this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.txtOnBehalfOf);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtPackaging);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.chkInRightClick);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.listProfile);
@@ -330,7 +344,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.cmdMetadata);
             this.Controls.Add(this.cmbAutoState);
             this.Controls.Add(this.txtUsername);
@@ -356,7 +370,7 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.ComboBox cmbAutoState;
         private System.Windows.Forms.ComboBox cmdMetadata;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Label lblName;
@@ -369,7 +383,7 @@
         private System.Windows.Forms.ListView listProfile;
         private System.Windows.Forms.MaskedTextBox txtPassword;
         private System.Windows.Forms.CheckBox chkInRightClick;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -378,5 +392,6 @@
         private System.Windows.Forms.TextBox txtPackaging;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtOnBehalfOf;
+        private System.Windows.Forms.Button btnQuit;
     }
 }

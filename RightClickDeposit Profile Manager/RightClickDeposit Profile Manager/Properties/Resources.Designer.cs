@@ -59,5 +59,12 @@ namespace org.swordapp.client.windows.profiles.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap repository {
+            get {
+                object obj = ResourceManager.GetObject("repository", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

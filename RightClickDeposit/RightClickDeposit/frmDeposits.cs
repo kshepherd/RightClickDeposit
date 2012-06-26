@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using org.swordapp.client.windows.libraries;
 
-namespace RightClickDeposit
+namespace org.swordapp.client.windows
 {
     public partial class frmDeposits : Form
     {
@@ -79,16 +79,19 @@ namespace RightClickDeposit
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            selectedDeposit = (int) listView1.SelectedItems[0].Tag;
-            action = "update";
-            if (deposits[selectedDeposit].GetInProgress())
+            if (listView1.SelectedItems.Count > 0)
             {
-                this.DialogResult = DialogResult.OK;
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("You have selected a deposit that is not 'in progress'. Completed deposits cannot be managed directly by this application, please contact your repository team for more assistance.", "Can not alter a completed deposit");
+                selectedDeposit = (int)listView1.SelectedItems[0].Tag;
+                action = "update";
+                if (deposits[selectedDeposit].GetInProgress())
+                {
+                    this.DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("You have selected a deposit that is not 'in progress'. Completed deposits cannot be managed directly by this application, please contact your repository team for more assistance.", "Can not alter a completed deposit");
+                }
             }
             
         }
@@ -105,16 +108,19 @@ namespace RightClickDeposit
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            selectedDeposit = (int)listView1.SelectedItems[0].Tag;
-            action = "delete";
-            if (deposits[selectedDeposit].GetInProgress())
+            if (listView1.SelectedItems.Count > 0)
             {
-                this.DialogResult = DialogResult.OK;
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("You have selected a deposit that is not 'in progress'. Completed deposits cannot be managed directly by this application, please contact your repository team for more assistance.", "Can not alter a completed deposit");
+                selectedDeposit = (int)listView1.SelectedItems[0].Tag;
+                action = "delete";
+                if (deposits[selectedDeposit].GetInProgress())
+                {
+                    this.DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("You have selected a deposit that is not 'in progress'. Completed deposits cannot be managed directly by this application, please contact your repository team for more assistance.", "Can not alter a completed deposit");
+                }
             }
         }
 
@@ -122,6 +128,24 @@ namespace RightClickDeposit
         {
             this.DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void btnComplete_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                selectedDeposit = (int)listView1.SelectedItems[0].Tag;
+                action = "complete";
+                if (deposits[selectedDeposit].GetInProgress())
+                {
+                    this.DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("You have selected a deposit that is not 'in progress'. Completed deposits cannot be managed directly by this application, please contact your repository team for more assistance.", "Can not alter a completed deposit");
+                }
+            }
         }
 
 

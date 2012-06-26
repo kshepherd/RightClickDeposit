@@ -9,7 +9,7 @@ namespace org.swordapp.client.windows.profiles
     static class Program
     {
         public static string profileDataPath = Application.UserAppDataPath + "\\profiles.xml";
-        public static string defaultProfileDataPath = "C:\\ProgramData\\RightClickDeposit\\RightClickDeposit\\1.0.0.0\\profiles.xml";
+        public static string defaultProfileDataPath = "C:\\ProgramData\\SWORD\\RightClickDeposit\\1.0.0.0\\profiles.xml";
         
         /// <summary>
         /// The main entry point for the application.

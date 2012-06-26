@@ -82,6 +82,7 @@ namespace org.swordapp.client.windows.libraries
         {
             string response;
             XmlDocument receipt = new XmlDocument();
+
             try
             {
                 response = DownloadString(new Uri(endpoint));
@@ -89,7 +90,7 @@ namespace org.swordapp.client.windows.libraries
             }
             catch (Exception ex)
             {
-                // Handle non-Webexception errors
+                // Nothing...
             }
             return receipt;
         }
@@ -105,29 +106,16 @@ namespace org.swordapp.client.windows.libraries
             this.Headers["X-Packaging"] = packaging;
             this.Headers["Metadata-Relevant"] = "false";
             this.Headers["In-Progress"] = "true";
-
-            try
-            {
-                UploadFileAsync(new Uri(endpoint), "PUT", filename);
-            }
-            catch (Exception ex)
-            {
-                // Exceptions are handled here, but not WebExceptions
-            }
+            UploadFileAsync(new Uri(endpoint), "PUT", filename);
+            
         }
 
         public void DeleteResource(string endpoint, UploadDataCompletedEventHandler completed, UploadProgressChangedEventHandler changed)
         {
             this.UploadDataCompleted += completed;
             this.UploadProgressChanged += changed;
-            try
-            {
-                UploadDataAsync(new Uri(endpoint), "DELETE", new byte[0]);
-            }
-            catch (Exception ex)
-            {
-                // Exceptions are handled here, but not WebExceptions
-            }
+            UploadDataAsync(new Uri(endpoint), "DELETE", new byte[0]);
+            
         }
 
         public XmlDocument PostAtom(string atom)
@@ -137,17 +125,9 @@ namespace org.swordapp.client.windows.libraries
             this.Headers["Content-Type"] = "application/atom+xml;charset=utf-8;type=entry";
             this.Headers["In-Progress"] = "true";
             
-            try
-            {
-                response = UploadString(new Uri(endpoint), "POST", atom);
-                receipt.LoadXml(response);
-            }
-            catch (Exception ex)
-            {
-                response = "";
-                // Exceptions are handled here, but not WebExceptions
-            }
-
+            response = UploadString(new Uri(endpoint), "POST", atom);
+            receipt.LoadXml(response);
+         
             return receipt;
         }
 
@@ -156,14 +136,7 @@ namespace org.swordapp.client.windows.libraries
             this.Headers["In-Progress"] = "false";
             this.UploadDataCompleted += completed;
             this.UploadProgressChanged += changed;
-            try
-            {
-                UploadDataAsync(new Uri(endpoint), "POST", new byte[0]);
-            }
-            catch (Exception ex)
-            {
-                // Exceptions are handled here, but not WebExceptions
-            }
+            UploadDataAsync(new Uri(endpoint), "POST", new byte[0]);
         }
     }
 }

@@ -19,7 +19,7 @@ using System.Security.Permissions;
 using System.Diagnostics;
 using org.swordapp.client.windows.libraries;
 
-namespace RightClickDeposit
+namespace org.swordapp.client.windows
 {
     
 
@@ -64,7 +64,7 @@ namespace RightClickDeposit
                 }
                 catch (Exception le)
                 {
-                    MessageBox.Show("Could not get username.\nReason: " + le.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Could not get username.\nReason: " + le.Message, "Error getting Windows credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Exit();
                 }
             }
@@ -113,19 +113,42 @@ namespace RightClickDeposit
             toolStripProgressBar.Maximum = 100;
             toolStripProgressBar.Minimum = 0;
             lblEndpoint.Text = endpoint;
+            /*
+            ResourceManager resourceManager = null;
+            try
+            {
+                resourceManager = new ResourceManager("RightClickDeposit", GetType().Assembly);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not load image resources: " + ex.Message);
+            }
+             * */
+
 
             switch (action)
             {
                 case "create":
-                    lblActionMessage.Text = "Create and deposit new resource in:";
-                    lblEndpoint.Text = profile.GetDepositUri();
+                    try
+                    {
+                        pictureAction.Image = org.swordapp.client.windows.Properties.Resources.rcd_add;
+                        //pictureAction.LoadAsync("Resources\\rcd-add.png");
+                       // pictureAction.LoadAsync(Application.StartupPath + "\\Resources\rcd-add.png");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Could not apply add icon to picture: " + ex.Message);
+                    }
+                    lblActionMessage.Text = "Create and deposit new resource at: ";
+                    lblEndpoint.Text = profile.GetName();
                     break;
                 case "update":
-                   // pictureAction.LoadAsync("Resources/repository-96.png");
+                    pictureAction.Image = org.swordapp.client.windows.Properties.Resources.rcd_upd;
                     lblActionMessage.Text = "Update content of existing resource at:";
                     ((Control)tabControl1.TabPages[1]).Enabled = false;
                     break;
                 case "delete":
+                    pictureAction.Image = org.swordapp.client.windows.Properties.Resources.rcd_del;
                     lblFilePath.Text = "-";
                     lblFileSize.Text = "-";
                     lblLastModified.Text = "-";
@@ -134,6 +157,17 @@ namespace RightClickDeposit
                     lblActionMessage.Text = "Delete existing resource at:";
                     ((Control)tabControl1.TabPages[1]).Enabled = false;
                     btnUpload.Text = "Delete";
+                    break;
+                case "complete":
+                    pictureAction.Image = org.swordapp.client.windows.Properties.Resources.rcd_cmp;
+                    lblFilePath.Text = "-";
+                    lblFileSize.Text = "-";
+                    lblLastModified.Text = "-";
+                    lblChecksum.Text = "-";
+                    cmbMime.Enabled = false;
+                    lblActionMessage.Text = "Complete existing resource at:";
+                    ((Control)tabControl1.TabPages[1]).Enabled = false;
+                    btnUpload.Text = "Complete";
                     break;
                 default:
                     lblActionMessage.Text = "Create and deposit new resource in:";
@@ -274,7 +308,7 @@ namespace RightClickDeposit
             sc.UploadProgressChanged += new UploadProgressChangedEventHandler(UploadProgressHandler);
             sc.UploadFileCompleted += new UploadFileCompletedEventHandler(UploadFileCompleted);
             sc.Headers["Content-Disposition"] = "attachment; filename=" + filename + "; charset=utf-8";
-            sc.Headers["Content-Type"] = contentType;
+            //sc.Headers["Content-Type"] = contentType;
             sc.Headers["X-Packaging"] = packaging;
             sc.Headers["Metadata-Relevant"] = "false";
 
@@ -282,9 +316,27 @@ namespace RightClickDeposit
             {
                 sc.UploadFileAsync(new Uri(emIri), "PUT", file, seIri);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                MessageBox.Show(ex.Message);
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                    switch (code)
+                    {
+                        case HttpStatusCode.InternalServerError:
+                            // All good.. DSpace does this for anything with " in it right now
+                            break;
+                        default:
+                            MessageBox.Show("Error uploading file, please check your login details, profile configuration and deposit status.\nReason: " + code.ToString(), "Error uploading file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                    }
+                }
+                else if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                {
+                    // handle name resolution failure
+                    MessageBox.Show("Could not resolve remote server's hostname. Please check your profile configuration and network connectivity.", "Error resolving remote server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             
         }
@@ -299,9 +351,27 @@ namespace RightClickDeposit
             {
                 sc.UploadDataAsync(new Uri(emIri), "DELETE", new byte[0]);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                MessageBox.Show(ex.Message);
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                    switch (code)
+                    {
+                        case HttpStatusCode.InternalServerError:
+                            // All good.. DSpace does this for anything with " in it right now
+                            break;
+                        default:
+                            MessageBox.Show("Error deleting deposit, please check your login details and profile configuration.\nReason: " + code.ToString(), "Error deleting deposit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                    }
+                }
+                else if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                {
+                    // handle name resolution failure
+                    MessageBox.Show("Could not resolve remote server's hostname. Please check your profile configuration and network connectivity.", "Error resolving remote server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
         }
@@ -329,17 +399,42 @@ namespace RightClickDeposit
                         if (seIri != null && !"".Equals(seIri))
                         {
                             //client.setInProgress("false", seIri);
-                            sc.CompleteDeposit(seIri, DepositCompleted, UploadDataProgressHandler);
+                            try
+                            {
+                                sc.CompleteDeposit(seIri, DepositCompleted, UploadDataProgressHandler);
+                            }
+                            catch (WebException ex)
+                            {
+                                if (ex.Status == WebExceptionStatus.ProtocolError)
+                                {
+                                    HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                                    switch (code)
+                                    {
+                                        case HttpStatusCode.InternalServerError:
+                                            // All good.. DSpace does this for anything with " in it right now
+                                            break;
+                                        default:
+                                            MessageBox.Show("Error completing deposit, please check your login details, deposit status and profile configuration.\nReason: " + code.ToString(), "Error completing deposit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                    }
+                                }
+                                else if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                                {
+                                    // handle name resolution failure
+                                    MessageBox.Show("Could not resolve remote server's hostname. Please check your profile configuration and network connectivity.", "Error resolving remote server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
 
                         }
                         else
                         {
-                            MessageBox.Show("No SE-IRI");
+                            MessageBox.Show("No location (SE-IRI) could be obtained for this deposit, please check your deposit status and configuration.", "Error retrieving deposit location", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Could not set 'in progress' attribute to 'false'.\nReason: " + ex.Message);
+                        //MessageBox.Show("Could not set 'in progress' attribute to 'false'.\nReason: " + ex.Message);
                     }
                     break;
                 default:
@@ -385,7 +480,7 @@ namespace RightClickDeposit
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Could not set 'in progress' attribute to 'false'.\nReason: " + ex.Message);
+                        MessageBox.Show("Could not set 'in progress' attribute to 'false'.\nReason: " + ex.Message, "Error completing deposit", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case DialogResult.No:
@@ -411,6 +506,8 @@ namespace RightClickDeposit
                 profile.GetPassword() == null || "".Equals(profile.GetPassword()))
             {
                 frmLogin loginDialog = new frmLogin();
+                loginDialog.Focus();
+                loginDialog.TopMost = true;
 
                 if(profile.GetUsername() != null && !"".Equals(profile.GetUsername()))
                 {
@@ -433,8 +530,35 @@ namespace RightClickDeposit
             if (action.Equals("create"))
             {
                 sc = new SWORDClient(profile.GetDepositUri(), profile.GetUsername(), profile.GetPassword(), profile.GetOnBehalfOf());
-                XmlDocument receipt = sc.PostAtom(getAtomEntry());
-                //MessageBox.Show("RESPONSE\n" + receipt);
+                XmlDocument receipt = new XmlDocument();
+
+                try
+                {
+                    receipt = sc.PostAtom(getAtomEntry());
+                }
+                catch (WebException ex)
+                {
+                    if (ex.Status == WebExceptionStatus.ProtocolError)
+                    {
+                        HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                        switch (code)
+                        {
+                            case HttpStatusCode.InternalServerError:
+                                MessageBox.Show("The server responded with an Internal Server Error (500). Please contact your repository system administrator and check your profile configuration", "Error creating deposit entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            default:
+                                MessageBox.Show("Error creating deposit, please check your login details and profile configuration.\nReason: " + code.ToString(), "Error creating deposit entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                        }
+                    }
+                    else if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                    {
+                        // handle name resolution failure
+                        MessageBox.Show("Could not resolve remote server's hostname. Please check your profile configuration and network connectivity.", "Error resolving remote server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                    //MessageBox.Show("RESPONSE\n" + receipt);
 
                 foreach (XmlNode link in receipt.GetElementsByTagName("link"))
                 {
@@ -469,18 +593,29 @@ namespace RightClickDeposit
                 string contentType = filemime;
                 if(cmbMime.Text != null && !"".Equals(cmbMime.Text))
                    contentType  = cmbMime.Text;
-                
-                if(action.Equals("delete"))
+
+                switch (action)
                 {
-                    DeleteResource(endpoint, seIri);
-                    saveDepositInfo(emIri, seIri, stateIri, filename);
+                    case "create":
+                        UploadFile(file, emIri, seIri, profile.GetPackaging(), contentType);
+                        saveDepositInfo(emIri, seIri, stateIri, filename);
+                        break;
+                    case "delete":
+                        DeleteResource(endpoint, seIri);
+                        saveDepositInfo(emIri, seIri, stateIri, filename);
+                        break;
+                    case "update":
+                        UploadFile(file, emIri, seIri, profile.GetPackaging(), contentType);
+                        saveDepositInfo(emIri, seIri, stateIri, filename);
+                        break;
+                    case "complete":
+                        sc.CompleteDeposit(seIri, DepositCompleted, UploadDataProgressHandler);
+                        saveDepositInfo(emIri, seIri, stateIri, filename);
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    UploadFile(file, emIri, seIri, profile.GetPackaging(), contentType);
-                    saveDepositInfo(emIri, seIri, stateIri, filename);
-                }
-                
+
             }
 
         }

@@ -7,12 +7,13 @@ using System.IO;
 using System.Diagnostics;
 using org.swordapp.client.windows.libraries;
 
-namespace RightClickDeposit
+namespace org.swordapp.client.windows
 {
     static class Program
     {
        public static string profileDataPath = Application.UserAppDataPath + "\\profiles.xml";
        public static string defaultProfileDataPath = Application.CommonAppDataPath + "\\profiles.xml";
+        
         
        public static string userDataPath = Application.UserAppDataPath + "\\deposits.xml";
        public static string action = "create";
@@ -37,13 +38,25 @@ namespace RightClickDeposit
            Application.EnableVisualStyles();
            Application.SetCompatibleTextRenderingDefault(false);
 
-           if (profiles.Count == 0)
+           if (args.Length == 1)
            {
-               MessageBox.Show("No profiles were found. Please use the 'manage profiles' command to create one or more profiles");
-               Application.Exit();
+               if (args[0].Equals("profiles"))
+               {
+                   //MessageBox.Show("CWD: " + Directory.GetCurrentDirectory() + "\nStartup Path: " + Application.StartupPath);
+                   Process rcdpm = new Process();
+                   rcdpm.StartInfo.FileName = Application.StartupPath + "\\rcdpm.exe";
+                   rcdpm.StartInfo.Arguments = defaultProfileDataPath;
+                   rcdpm.Start();
+                   Application.Exit();
+               }
            }
            else
            {
+               if (profiles.Count == 0)
+               {
+                   MessageBox.Show("No profiles were found. Please use the 'manage profiles' command to create one or more profiles\n(Requires administrative privileges)");
+                   Application.Exit();
+               }
 
                if (args.Length > 2)
                {
@@ -69,6 +82,8 @@ namespace RightClickDeposit
 
                        case "update":
                            frmDeposits depositSelector = new frmDeposits(deposits);
+                           depositSelector.TopMost = true;
+                           depositSelector.Focus();
                            DialogResult res = depositSelector.ShowDialog();
                            if (res == DialogResult.OK)
                            {
@@ -94,6 +109,7 @@ namespace RightClickDeposit
                            }
 
                            break;
+                           /*
                        case "delete":
                            frmDeposits depositDeleter = new frmDeposits(deposits);
                            DialogResult resd = depositDeleter.ShowDialog();
@@ -116,22 +132,11 @@ namespace RightClickDeposit
                                Application.Exit();
                            }
                            break;
+                            * */
                        default:
                            break;
                    }
 
-               }
-               else if (args.Length == 1)
-               {
-                   if(args[0].Equals("profiles"))
-                   {
-                       //MessageBox.Show("CWD: " + Directory.GetCurrentDirectory() + "\nStartup Path: " + Application.StartupPath);
-                       Process rcdpm = new Process();
-                       rcdpm.StartInfo.FileName = Application.StartupPath + "\\rcdpm.exe";
-                       rcdpm.StartInfo.Arguments = defaultProfileDataPath;
-                       rcdpm.Start();
-                       Application.Exit();
-                   }
                }
 
                // if action is 'update', show form to select previous deposit

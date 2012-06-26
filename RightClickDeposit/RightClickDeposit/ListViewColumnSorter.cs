@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RightClickDeposit
+namespace org.swordapp.client.windows
 {
     /// <summary>
     /// This class is an implementation of the 'IComparer' interface.

@@ -8,7 +8,7 @@
     <ProjectGuid>{DB1B5AB6-23F5-470D-97E5-3031E840ACFB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RightClickDeposit</RootNamespace>
+    <RootNamespace>org.swordapp.client.windows</RootNamespace>
     <AssemblyName>RightClickDeposit</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -71,7 +71,6 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="ListViewColumnSorter.cs" />
-    <Compile Include="ModifyRegistry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDeposits.resx">
@@ -102,6 +101,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\rcd-add.png" />
+    <Content Include="Resources\rcd-cmp.png" />
+    <Content Include="Resources\rcd-del.png" />
+    <Content Include="Resources\rcd-upd.png" />
     <Content Include="RightClickDeposit.exe.manifest">
       <SubType>Designer</SubType>
     </Content>
